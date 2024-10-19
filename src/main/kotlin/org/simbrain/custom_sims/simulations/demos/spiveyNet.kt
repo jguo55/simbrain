@@ -5,21 +5,14 @@ import org.simbrain.custom_sims.*
 import org.simbrain.network.connections.OneToOne
 import org.simbrain.network.layouts.LineLayout
 import org.simbrain.network.neurongroups.NormalizationGroup
-import org.simbrain.network.neurongroups.SoftmaxGroup
-import org.simbrain.network.subnetworks.RestrictedBoltzmannMachine
 import org.simbrain.util.place
-import org.simbrain.util.plus
 import org.simbrain.util.point
-import org.simbrain.util.stats.distributions.NormalDistribution
-import org.simbrain.util.toMatrix
 import org.simbrain.world.odorworld.entities.EntityType
-import org.simbrain.world.odorworld.entities.OdorWorldEntity
-import smile.math.matrix.Matrix
 import java.awt.Dimension
-import javax.swing.JButton
 
 /**
- * Based on Spivey's 2024 paper
+ * Based on Spivey's 2024 paper, "A Linking Hypothesis for Eyetracking and Mousetracking
+ * in the Visual World Paradigm"
  */
 val spiveyNet = newSim {
 
@@ -29,34 +22,58 @@ val spiveyNet = newSim {
     val networkComponent = addNetworkComponent("Spivey Net")
     val net = networkComponent.network
 
-    val group1 = NormalizationGroup(4).apply {
+    // TODO: Add Integration nodes and eye nodes and lay them out / wire them up properly
+    // (Right now just did a few to show the idea)
+    val lexicalNodes = NormalizationGroup(4).apply {
         layout = LineLayout()
         applyLayout()
+        label = "Lexical"
     }
-    val group2 = NormalizationGroup(4).apply {
+    val visualNodes = NormalizationGroup(4).apply {
         layout = LineLayout()
         applyLayout()
+        label = "Vision"
     }
-    net.addNetworkModels(group1, group2).awaitAll()
-    group1.location = point(0,0)
-    group2.location = point(0,100)
+    val mouseNodes = NormalizationGroup(4).apply {
+        layout = LineLayout()
+        applyLayout()
+        label = "Mouse"
+    }
+    net.addNetworkModels(lexicalNodes, visualNodes, mouseNodes).awaitAll()
+    lexicalNodes.location = point(0,0)
+    visualNodes.location = point(14,152)
+    mouseNodes.location = point(240,152)
 
     val connector = OneToOne().apply {
         percentExcitatory = 100.0
         useBidirectionalConnections = true
     }
-    net.addNetworkModels(connector.connectNeurons(group1.neuronList, group2.neuronList))
+    net.addNetworkModels(connector.connectNeurons(lexicalNodes.neuronList, visualNodes.neuronList))
+    net.addNetworkModels(connector.connectNeurons(visualNodes.neuronList, mouseNodes.neuronList))
 
     // World
     val oc = addOdorWorldComponent()
-    oc.world.isUseCameraCentering = false
+    val world = oc.world
+    world.isUseCameraCentering = false
     desktop?.getDesktopComponent(oc)?.title = "Mouse Trace"
-    oc.world.addEntity(157, 271, EntityType.MOUSE).apply {
+    val mouse = world.addEntity(157, 271, EntityType.MOUSE).apply {
         heading = 90.0
-        isShowTrail = true
     }
-    oc.world.addEntity(38, 49, EntityType.CANDLE)
-    oc.world.addEntity(287, 44, EntityType.BELL)
+    world.addEntity(38, 49, EntityType.CANDLE)
+    world.addEntity(287, 44, EntityType.BELL)
+    mouse.isShowTrail = true
+
+    val initialLocation = mouse.location
+
+    workspace.addUpdateAction("Move mouse") {
+        if (mouse.y > 15) {
+            mouse.y -= 1
+        }
+        // TODO: Properly implement this to deal with all four nodes and check the paper
+        mouse.x += (mouseNodes.neuronList[0].activation)
+        //mouse.x += (mouseNodes.neuronList[0].activation - mouseNodes.neuronList[1].activation)
+    }
+
 
     withGui {
         //place(docViewer, 0, 0, 464, 619)
@@ -64,15 +81,19 @@ val spiveyNet = newSim {
         place(oc, 613, 15, 391, 455)
         createControlPanel("Control Panel", 15, 15) {
             addButton("Pattern 1") {
-                group1.setActivations(doubleArrayOf(1.0,1.0,1.0,1.0))
-                group2.setActivations(doubleArrayOf(1.0,1.0,1.0,1.0))
+                lexicalNodes.setActivations(doubleArrayOf(1.0,1.0,1.0,1.0))
+                visualNodes.setActivations(doubleArrayOf(1.0,1.0,1.0,1.0))
             }.apply {
                 // Hack to make the panel wider
                 preferredSize = Dimension(170, 30)
             }
             addButton("Pattern 2") {
-                group1.setActivations(doubleArrayOf(-1.0,1.0,-1.0,1.0))
-                group2.setActivations(doubleArrayOf(1.0,-1.0,1.0,-1.0))
+                lexicalNodes.setActivations(doubleArrayOf(-1.0,1.0,-1.0,1.0))
+                visualNodes.setActivations(doubleArrayOf(1.0,-1.0,1.0,-1.0))
+            }
+            addButton("Reset") {
+                mouse.clearTrail()
+                mouse.location = initialLocation
             }
         }
     }
