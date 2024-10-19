@@ -18,6 +18,7 @@
  */
 package org.simbrain.workspace.gui.couplingmanager;
 
+import org.simbrain.util.StandardDialog;
 import org.simbrain.util.SwingUtilsKt;
 import org.simbrain.workspace.*;
 import org.simbrain.workspace.events.WorkspaceComponentEvents;
@@ -109,8 +110,8 @@ public class AttributePanel extends JPanel implements ActionListener, MouseListe
 
     private void showAttributeTypePanel() {
         if (attributeTypePanel != null) {
-            JDialog dialog = new JDialog();
-            dialog.setModal(true);
+            StandardDialog dialog = new StandardDialog();
+            dialog.setAsDoneDialog();
             dialog.setContentPane(attributeTypePanel);
             dialog.pack();
             dialog.setLocationRelativeTo(null);
