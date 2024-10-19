@@ -107,6 +107,9 @@ class DataWorldDesktopComponent(frame: GenericFrame, val component: DataWorldCom
         file.add(actionManager.createImportAction(this))
         file.add(actionManager.createExportAction(this))
         file.addSeparator()
+        file.add(tablePanel.table.importCSVAction(fixedColumns = false))
+        file.add(tablePanel.table.exportCsv())
+        file.addSeparator()
         file.add(createAction(name = "Preferences...") {
             component.dataWorld.createEditorDialog().display()
         })
