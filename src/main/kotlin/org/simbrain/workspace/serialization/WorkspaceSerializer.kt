@@ -1,10 +1,8 @@
 package org.simbrain.workspace.serialization
 
-import org.simbrain.util.SFileChooser
 import org.simbrain.util.getSimbrainXStream
 import org.simbrain.workspace.Workspace
 import org.simbrain.workspace.WorkspaceComponent
-import org.simbrain.workspace.WorkspacePreferences.baseDirectory
 import org.simbrain.workspace.couplings.Coupling
 import org.simbrain.workspace.gui.SimbrainDesktop.getDesktopComponent
 import java.awt.Rectangle
@@ -313,17 +311,6 @@ class WorkspaceSerializer(val workspace: Workspace) {
                     throw RuntimeException("premature EOF")
                 }
                 pos += read
-            }
-        }
-
-        fun <T> showOpenComponentDialog(type: Class<T>): WorkspaceComponent? {
-            val defaultDirectory = baseDirectory
-            val chooser = SFileChooser(defaultDirectory, "XML File", "xml")
-            val file = chooser.showOpenDialog()
-            return if (file != null) {
-                open(type, file)
-            } else {
-                null
             }
         }
 
