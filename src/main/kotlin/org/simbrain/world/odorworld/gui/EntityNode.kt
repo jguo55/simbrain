@@ -253,7 +253,8 @@ class EntityNode(
             fun isCrossingBroder(): Boolean {
                 val delta = (trail.path.currentPoint - entity.location).magnitude.absoluteValue
                 val velocity = entity.speed.absoluteValue
-                return delta > velocity + 0.5 // add a little bit of tolerance
+                // assume jumps of over 20 are wraparounds.  a good enough way to detect wraparound for now
+                return delta > velocity + 20.0
             }
             if (isCrossingBroder()) {
                 trail.moveTo(entity.x, entity.y)
