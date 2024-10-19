@@ -143,7 +143,7 @@ public class BarChartDesktopComponent extends DesktopComponent<BarChartComponent
         editMenu.add(preferences);
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/bar_chart.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/barChart.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

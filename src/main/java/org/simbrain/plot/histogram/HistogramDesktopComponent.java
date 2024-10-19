@@ -85,7 +85,7 @@ public class HistogramDesktopComponent extends DesktopComponent<HistogramCompone
         editMenu.add(preferences);
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/histogram.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/barChart.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

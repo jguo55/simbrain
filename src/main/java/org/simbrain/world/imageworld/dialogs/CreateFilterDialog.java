@@ -25,7 +25,7 @@ public class CreateFilterDialog extends StandardDialog {
         this.filterCollection = filterCollection;
 
         // TODO: rename help
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Worlds/ImageWorld/sensorMatrix.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/worlds/imageworld.html");
         addButton(new JButton(helpAction));
 
         templateFilter =

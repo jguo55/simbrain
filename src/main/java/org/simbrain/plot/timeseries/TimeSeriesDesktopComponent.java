@@ -76,7 +76,7 @@ public class TimeSeriesDesktopComponent extends DesktopComponent<TimeSeriesPlotC
         editMenu.add(new JMenuItem(TimeSeriesPlotActions.getPropertiesDialogAction(timeSeriesPanel)));
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/time_series.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/timeSeries.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

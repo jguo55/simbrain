@@ -62,7 +62,7 @@ public class AddSensorDialog extends StandardDialog {
      */
     private void init(String title) {
         setTitle(title);
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Worlds/OdorWorld/sensors.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/worlds/odorworld.html");
         addButton(new JButton(helpAction));
         sensorCreatorPanel = new AnnotatedPropertyEditor<>(AnnotatedPropertyEditorKt.objectWrapper("Add Sensor",
                 new SmellSensor()));

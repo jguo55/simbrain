@@ -4,6 +4,4 @@ class SoundWorld {
 
     var generator: SoundGenerator = Beeper()
 
-
-
 }

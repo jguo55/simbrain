@@ -62,7 +62,7 @@ public class PixelPlotDesktopComponent extends DesktopComponent<PixelPlotCompone
         editMenu.add(preferences);
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/bar_chart.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/pixelPlot.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

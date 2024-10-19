@@ -148,10 +148,10 @@ public final class SynapseDialog extends StandardDialog {
      */
     public void updateHelp(SynapseUpdateRule<?, ?> updateRule) {
         if (updateRule == null) {
-            helpAction = new ShowHelpAction("Pages/Network/synapse.html");
+            helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/synapses/");
         } else {
             String name = updateRule.getName().replaceAll("\\s", "");
-            helpAction = new ShowHelpAction("Pages/Network/synapse/" + name + ".html");
+            helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/synapses/" + name + ".html");
         }
         helpButton.setAction(helpAction);
     }

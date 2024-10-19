@@ -87,7 +87,7 @@ public class EntityDialog extends StandardDialog {
 
         setContentPane(tabbedPane);
 
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Worlds/OdorWorld/OdorWorld.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/worlds/odorworld.html");
         addButton(new JButton(helpAction));
     }
 

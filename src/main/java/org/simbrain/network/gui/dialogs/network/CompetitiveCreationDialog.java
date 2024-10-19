@@ -51,7 +51,7 @@ public class CompetitiveCreationDialog extends StandardDialog {
         competitivePanel = new AnnotatedPropertyEditor(cc);
         setContentPane(competitivePanel);
 
-        Action helpAction = new ShowHelpAction("Pages/Network/network/competitive.html");
+        Action helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/neurongroups/competitive.html");
         addButton(new JButton(helpAction));
 
     }

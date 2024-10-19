@@ -70,7 +70,7 @@ public class SubnetworkPanel extends JPanel {
 
         // Set up help button
         Action helpAction;
-        helpAction = new ShowHelpAction("Pages/Network/subnetwork.html");
+        helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/subnetworks/l");
         parentDialog.addButton(new JButton(helpAction));
     }
 

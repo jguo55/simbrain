@@ -62,7 +62,7 @@ public class AddEffectorDialog extends StandardDialog {
      */
     private void init(String title) {
         setTitle(title);
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Worlds/OdorWorld/effectors.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/worlds/odorworld.html");
         addButton(new JButton(helpAction));
         effectorCreatorPanel = new AnnotatedPropertyEditor(AnnotatedPropertyEditorKt.objectWrapper("Add Effector",
                 new StraightMovement()));

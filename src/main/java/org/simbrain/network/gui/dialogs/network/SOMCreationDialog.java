@@ -43,7 +43,7 @@ public class SOMCreationDialog extends StandardDialog {
         somPanel = new AnnotatedPropertyEditor(sc);
         setContentPane(somPanel);
 
-        Action helpAction = new ShowHelpAction("Pages/Network/network/somnetwork.html");
+        Action helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/subnetworks/selfOrganizingMap.html");
         addButton(new JButton(helpAction));
     }
 

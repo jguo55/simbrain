@@ -78,7 +78,7 @@ public class PieChartDesktopComponent extends DesktopComponent<PieChartComponent
         editMenu.add(preferences);
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/pie_chart.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/pieChart.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

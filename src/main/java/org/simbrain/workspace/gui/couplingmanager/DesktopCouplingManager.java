@@ -112,7 +112,7 @@ public class DesktopCouplingManager extends JPanel {
 
         bottomPanel.add(legend);
         bottomPanel.add(Box.createHorizontalGlue());
-        bottomPanel.add(new JButton(new ShowHelpAction("Pages/Workspace/Couplings.html")));
+        bottomPanel.add(new JButton(new ShowHelpAction("https://docs.simbrain.net/docs/workspace/couplings.html")));
         bottomPanel.add(couplingMethodComboBox);
 
         JButton addCouplingsButton = new JButton("Add Coupling(s)");

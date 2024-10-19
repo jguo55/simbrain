@@ -132,7 +132,7 @@ class DataWorldDesktopComponent(frame: GenericFrame, val component: DataWorldCom
 
         // Help Menu
         menuBar.add(help)
-        val helpAction = ShowHelpAction("Pages/Worlds/SoundWorld/SoundWorld.html")
+        val helpAction = ShowHelpAction("https://docs.simbrain.net/docs/worlds/dataworld.html")
         helpItem.action = helpAction
         help.add(helpItem)
 

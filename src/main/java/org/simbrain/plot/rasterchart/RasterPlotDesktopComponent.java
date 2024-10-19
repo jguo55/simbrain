@@ -80,7 +80,7 @@ public class RasterPlotDesktopComponent extends DesktopComponent<RasterPlotCompo
         editMenu.add(new JMenuItem(RasterPlotActions.getPropertiesDialogAction(rasterPanel)));
 
         JMenu helpMenu = new JMenu("Help");
-        ShowHelpAction helpAction = new ShowHelpAction("Pages/Plot/raster.html");
+        ShowHelpAction helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/plots/rasterPlot.html");
         JMenuItem helpItem = new JMenuItem(helpAction);
         helpMenu.add(helpItem);
 

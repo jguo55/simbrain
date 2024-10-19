@@ -99,7 +99,7 @@ public class HopfieldCreationDialog extends StandardDialog {
         setContentPane(tabbedPane);
 
         // Help action
-        Action helpAction = new ShowHelpAction("Pages/Network/network/hopfieldnetwork.html");
+        Action helpAction = new ShowHelpAction("https://docs.simbrain.net/docs/network/subnetworks/hopfield.html");
         addButton(new JButton(helpAction));
 
     }
