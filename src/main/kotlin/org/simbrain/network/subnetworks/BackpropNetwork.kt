@@ -14,6 +14,7 @@
 package org.simbrain.network.subnetworks
 
 import org.simbrain.network.core.XStreamConstructor
+import org.simbrain.network.core.randomizeBiases
 import org.simbrain.network.trainers.BackpropTrainer
 import org.simbrain.network.trainers.MatrixDataset
 import org.simbrain.network.trainers.SupervisedNetwork
@@ -57,4 +58,14 @@ class BackpropNetwork : FeedForward, SupervisedNetwork {
 
     override var trainer: BackpropTrainer = BackpropTrainer()
 
+    override fun initWeights() {
+        wmList.forEach { wm -> trainer.weightInitializationStrategy.initializeWeights(wm) }
+    }
+
+    override fun initBiases() {
+        (layerList - inputLayer).forEach {
+            it.clear()
+            it.randomizeBiases()
+        }
+    }
 }

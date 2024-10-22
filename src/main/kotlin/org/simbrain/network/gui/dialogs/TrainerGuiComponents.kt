@@ -60,12 +60,13 @@ class TrainerControls<SN>(trainer: SupervisedTrainer<SN>, supervisedNetwork: SN,
         trainer.events.endTraining.fire()
     }
 
-    private val randomizeAction = createAction(
-        name = "Randomize",
-        description = "Randomize network",
+    private val initializeParameters = createAction(
+        name = "Init parameters",
+        description = "Initialize weights using selected strategy and biases using randomizer from network preferences",
         iconPath = "menu_icons/Rand.png",
     ) {
-        supervisedNetwork.randomize()
+        supervisedNetwork.initWeights()
+        supervisedNetwork.initBiases()
     }
 
     private val trainerPropsAction = createAction(
@@ -109,9 +110,9 @@ class TrainerControls<SN>(trainer: SupervisedTrainer<SN>, supervisedNetwork: SN,
             }
         })
         runTools.add(JButton(stepAction))
-        val randomizeButton = JButton(randomizeAction)
-        randomizeButton.hideActionText = true
-        runTools.add(randomizeButton)
+        val initParamsButton = JButton(initializeParameters)
+        initParamsButton.hideActionText = true
+        runTools.add(initParamsButton)
         runTools.add(JButton(trainerPropsAction), "wrap")
         val labelPanel = LabelledItemPanel()
         labelPanel.addItem("Iterations:", iterationsLabel)

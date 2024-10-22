@@ -13,10 +13,7 @@
  */
 package org.simbrain.network.subnetworks
 
-import org.simbrain.network.core.Network
-import org.simbrain.network.core.NeuronArray
-import org.simbrain.network.core.WeightMatrix
-import org.simbrain.network.core.XStreamConstructor
+import org.simbrain.network.core.*
 import org.simbrain.network.trainers.*
 import org.simbrain.network.updaterules.LinearRule
 import org.simbrain.network.updaterules.SigmoidalRule
@@ -134,6 +131,17 @@ class SRNNetwork: FeedForward, SupervisedNetwork {
     override fun randomize(randomizer: ProbabilityDistribution?) {
         super.randomize(randomizer)
         contextToHidden.randomize(randomizer)
+    }
+
+    override fun initWeights() {
+        (wmList + contextToHidden).forEach { wm -> trainer.weightInitializationStrategy.initializeWeights(wm) }
+    }
+
+    override fun initBiases() {
+        (layerList - inputLayer).forEach {
+            it.clear()
+            it.randomizeBiases()
+        }
     }
 
     /**

@@ -44,9 +44,14 @@ abstract class SupervisedTrainer<SN: SupervisedNetwork> : EditableObject {
     @UserParameter(label = "Loss Function", order = 2)
     var lossFunction = BackpropLossFunction.SSE
 
+    var weightInitializationStrategy: WeightInitializationStrategy by GuiEditable(
+        initValue = Xavier(),
+        order = 4
+    )
+
     var stoppingCondition by GuiEditable(
         initValue = StoppingCondition(),
-        order = 4
+        order = 5
     )
 
     var iteration = 0

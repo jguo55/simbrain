@@ -32,4 +32,8 @@ interface SupervisedNetwork {
     context(Network)
     fun update()
 
+    fun initWeights()
+
+    fun initBiases()
+
 }
