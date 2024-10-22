@@ -141,10 +141,10 @@ abstract class SimbrainDataFrame : AbstractTableModel() {
         return  columnsOfType((0 until columnCount).toList(), *classes)
     }
 
-    private fun getDoubleRowUnsafe(row: Int): DoubleArray {
+    private fun getDoubleRowUnsafe(row: Int, replaceInvalid: Double = Double.NaN): DoubleArray {
         // No type check
         return (0 until columnCount)
-            .map { ((getValueAt(row, it) ?: Double.NaN) as Number).toDouble() }
+            .map { ((getValueAt(row, it) ?: replaceInvalid) as Number).toDouble() }
             .toDoubleArray()
     }
 
@@ -185,12 +185,12 @@ abstract class SimbrainDataFrame : AbstractTableModel() {
      *
      * Numeric types are cast to doubles.
      */
-    fun get2DDoubleArray(): Array<DoubleArray> {
+    fun get2DDoubleArray(replaceInvalid: Double = Double.NaN): Array<DoubleArray> {
         if (!columnsOfType(Double::class.java)) {
             throw Error("getDoubleArray called on a non-numeric column")
         }
         return (0 until rowCount)
-            .map { getDoubleRowUnsafe(it) }
+            .map { getDoubleRowUnsafe(it, replaceInvalid) }
             .toTypedArray()
     }
 

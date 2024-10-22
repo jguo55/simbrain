@@ -167,6 +167,31 @@ val SimbrainJTable.showScatterPlotAction
         }
     }
 
+fun SimbrainJTable.createShowEigenValuesAction() = createAction(
+    name = "Show Eigenvalues",
+    description = "Show the eigenvalues of the matrix",
+    initBlock = {
+        val canShowEigenValues = try {
+            model.get2DDoubleArray(replaceInvalid = 0.0).toMatrix().eigen()
+            true
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            false
+        }
+        isEnabled = canShowEigenValues
+    },
+    iconPath = "menu_icons/SwissIcon.png",
+) {
+    val eigenValues = model.get2DDoubleArray(replaceInvalid = 0.0).toMatrix().eigenValuesString()
+    JOptionPane.showMessageDialog(
+        null,
+        "[${eigenValues.joinToString(", ")}]",
+        "Eigenvalues",
+        JOptionPane.INFORMATION_MESSAGE
+    )
+}
+
+
 /**
  * @param useRowLabels If true, the row labels for this dataset are shown as labels in the corresponding points of the projection plot.
  */

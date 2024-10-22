@@ -268,3 +268,16 @@ fun Matrix.relu(): Matrix {
     }
     return activated
 }
+
+fun Matrix.eigenValuesString(precision: Int = 2) = eigen().sort().let {
+    val realParts = it.wr
+    val imaginaryParts = it.wi
+    (realParts zip imaginaryParts).filter { (r, i) -> r != 0.0 && i != 0.0 }.map { (r, i) ->
+        if (i == 0.0) {
+            r.format(precision)
+        } else {
+            "${r.format(precision)}+${i.format(precision)}i"
+        }.replace(Regex("0\\."), ".")
+        .replace("+-", "-")
+    }
+}
