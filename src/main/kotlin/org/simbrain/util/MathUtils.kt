@@ -23,6 +23,8 @@ fun <T : Comparable<T>> T.clip(range: ClosedRange<T>) =
 fun Double.format(precision: Int) = "%.${precision}f".format(this)
 fun Double.roundToString(precision: Int) = format(precision)
 
+fun Double.roundTo(precision: Int) = "%.${precision}f".format(this).toDouble()
+
 fun DoubleArray.summedSquares() =
     sumOf { it * it }
 

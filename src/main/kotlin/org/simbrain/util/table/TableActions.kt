@@ -180,11 +180,10 @@ fun SimbrainJTable.createShowEigenValuesAction() = createAction(
         }
         isEnabled = canShowEigenValues
     },
-    iconPath = "menu_icons/SwissIcon.png",
 ) {
     val eigenValues = model.get2DDoubleArray(replaceInvalid = 0.0).toMatrix().eigenValuesString()
     JOptionPane.showMessageDialog(
-        null,
+        this,
         "[${eigenValues.joinToString(", ")}]",
         "Eigenvalues",
         JOptionPane.INFORMATION_MESSAGE

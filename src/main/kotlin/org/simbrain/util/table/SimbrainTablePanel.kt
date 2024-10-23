@@ -141,7 +141,7 @@ open class SimbrainTablePanel @JvmOverloads constructor(
             addAction(table.showScatterPlotAction)
         }
         addAction(table.createOpenProjectionAction())
-        addAction(table.createShowEigenValuesAction())
+        table.popUpMenu.add(table.createShowEigenValuesAction())
         addSeparator()
         addAction(table.showHistogramAction)
         addAction(table.showBoxPlotAction)

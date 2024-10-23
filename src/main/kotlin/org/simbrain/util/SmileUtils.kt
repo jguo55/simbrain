@@ -3,10 +3,7 @@ package org.simbrain.util
 import org.simbrain.plot.histogram.HistogramModel
 import org.simbrain.plot.histogram.HistogramPanel
 import smile.math.matrix.Matrix
-import kotlin.math.ln
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
+import kotlin.math.*
 
 /**
  * Make sure the two matrices have the same shape
@@ -272,12 +269,22 @@ fun Matrix.relu(): Matrix {
 fun Matrix.eigenValuesString(precision: Int = 2) = eigen().sort().let {
     val realParts = it.wr
     val imaginaryParts = it.wi
-    (realParts zip imaginaryParts).filter { (r, i) -> r != 0.0 && i != 0.0 }.map { (r, i) ->
-        if (i == 0.0) {
+    fun format(r: Double, i: Double, isPair: Boolean) = if (i == 0.0) {
             r.format(precision)
         } else {
-            "${r.format(precision)}+${i.format(precision)}i"
+            "${r.format(precision)}${if (isPair) "±" else "+"}${i.format(precision)}i"
         }.replace(Regex("0\\."), ".")
         .replace("+-", "-")
-    }
+
+    (realParts zip imaginaryParts)
+        .groupBy { (r, i) -> r.roundTo(3) to abs(i.roundTo(3)) }
+        .map { (_, values) ->
+            if (values.distinctBy { (_, i) -> i }.count() > 1) {
+                val (r, i) = values.first()
+                format(r, i, isPair = true)
+            } else {
+                val (r, i) = values.first()
+                format(r, i, isPair = false)
+            }
+        }
 }
