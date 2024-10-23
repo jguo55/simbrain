@@ -578,7 +578,7 @@ class NetworkActions(val networkPanel: NetworkPanel) {
             addSubnetAction("Hopfield") { HopfieldCreationDialog(networkPanel) },
             addSubnetAction("Restricted Boltzmann Machine") {
                 // TODO: As this pattern is reused add a util to NetworkDialogs.kt
-                RestrictedBoltzmannMachine.RBMCreator().createEditorDialog {
+                RestrictedBoltzmannMachine.RBMCreator().createEditorDialog("Create Restricted Boltzmann Machine") {
                 networkPanel.network.addNetworkModel(it.create()) } },
             addSubnetAction("SOM Network") { SOMCreationDialog(networkPanel) },
             addSubnetAction("SRN (Simple Recurrent Network)") { networkPanel.showSRNCreationDialog() }

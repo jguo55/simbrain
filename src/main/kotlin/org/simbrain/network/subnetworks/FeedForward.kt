@@ -53,7 +53,6 @@ open class FeedForward : Subnetwork {
      * @param initialPosition Center location for network.
      */
     constructor(nodesPerLayer: IntArray, initialPosition: Point2D?): super() {
-        label = "Layered Network"
         inputLayer = NeuronArray(nodesPerLayer[0])
         addModel(inputLayer)
         layerList.add(inputLayer)

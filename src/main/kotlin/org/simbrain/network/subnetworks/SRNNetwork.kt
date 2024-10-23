@@ -55,7 +55,6 @@ class SRNNetwork: FeedForward, SupervisedNetwork {
         intArrayOf(numInputNodes, numHiddenNodes, numOutputNodes),
         initialPosition
     ) {
-        label = "SRN"
 
         hiddenLayer = layerList[1].also {
             it.updateRule = SigmoidalRule()

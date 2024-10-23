@@ -35,7 +35,6 @@ class SoftmaxGroup @JvmOverloads constructor(
     private constructor() : this(listOf())
 
     init {
-        label = "Softmax"
         addNeurons(neurons.onEach { (it.updateRule as? LinearRule)?.clippingType = LinearRule.ClippingType.NoClipping })
     }
 

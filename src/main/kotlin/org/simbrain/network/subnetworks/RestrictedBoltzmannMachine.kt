@@ -62,7 +62,6 @@ class RestrictedBoltzmannMachine : Subnetwork, UnsupervisedNetwork {
     override val trainer = UnsupervisedTrainer()
 
     constructor(numVisibleNodes: Int, numHiddenNodes: Int): super() {
-        this.label = "Restricted Boltzmann Machine"
         this.inputData = Matrix.rand(defaultRowsInputData, numVisibleNodes)
         visibleLayer = NeuronArray(numVisibleNodes).apply {
             label = "Visible layer"
@@ -191,6 +190,7 @@ class RestrictedBoltzmannMachine : Subnetwork, UnsupervisedNetwork {
         fun create(): RestrictedBoltzmannMachine {
             return RestrictedBoltzmannMachine(numVisible, numHidden)
         }
+
     }
 }
 

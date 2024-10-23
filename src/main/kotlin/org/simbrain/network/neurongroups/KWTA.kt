@@ -51,7 +51,6 @@ class KWTA @JvmOverloads constructor(
     private constructor(): this(listOf())
 
     init {
-        label = "K-Winner Take All"
         neurons.filterNot { it.updateRule is PointNeuronRule }.forEach { it.updateRule = PointNeuronRule() }
         addNeurons(neurons)
     }

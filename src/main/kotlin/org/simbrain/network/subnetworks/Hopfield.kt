@@ -56,13 +56,12 @@ class Hopfield : Subnetwork, UnsupervisedNetwork {
     override lateinit var customInfo: InfoText
 
     constructor(numNeurons: Int): super() {
-        label = "Hopfield network"
 
         this.inputData = Matrix(10, numNeurons).binaryRandomize()
 
         // Create main neuron group
         neuronGroup = NeuronGroup(numNeurons)
-        neuronGroup.label = "The Neurons"
+        neuronGroup.label = "Neurons"
         neuronGroup.applyLayout()
         neuronGroup.location = point(0.0, 0.0)
         addModel(neuronGroup)

@@ -56,7 +56,6 @@ class CompetitiveNetwork : Subnetwork, UnsupervisedNetwork {
     lateinit var weights: SynapseGroup
 
     constructor(numInputNeurons: Int, numCompetitiveNeurons: Int): super() {
-        this.label = "Competitive Network"
 
         this.inputData = Matrix.rand(defaultRowsInputData, numInputNeurons)
 

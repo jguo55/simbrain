@@ -53,7 +53,6 @@ class SOMNetwork : Subnetwork, UnsupervisedNetwork {
     override lateinit var inputData: Matrix
 
     constructor(numInputNeurons: Int, numSOMNeurons: Int): super() {
-        this.label = "SOM Network"
         som = SOMGroup(numSOMNeurons)
         som.label = "SOM Group"
         this.addModel(som)

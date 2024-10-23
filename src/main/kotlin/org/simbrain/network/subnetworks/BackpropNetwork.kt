@@ -48,7 +48,6 @@ class BackpropNetwork : FeedForward, SupervisedNetwork {
         val nin = nodesPerLayer.first()
         val nout = nodesPerLayer.last()
         trainingSet = createDiagonalDataset(nin, nout, min(nin,nout))
-        label = "Backprop"
     }
 
     @XStreamConstructor()

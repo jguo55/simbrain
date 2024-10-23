@@ -132,6 +132,7 @@ fun NetworkPanel.creatContextMenu() = JPopupMenu().apply {
         add(newNeuronAction)
         add(addNeuronsAction)
         addSeparator()
+        add(addGroupAction)
         add(addNeuronArrayAction)
         add(addActivationSequenceAction)
         add(addTransformerBlockAction)
